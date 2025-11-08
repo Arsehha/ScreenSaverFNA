@@ -10,7 +10,7 @@ namespace ScreenSaver
     /// <summary>
     /// Основная программа
     /// </summary>
-    public class Game1 : Game
+    public class MainGame : Game
     {
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
@@ -39,13 +39,13 @@ namespace ScreenSaver
         private Texture2D backgroundTexture;
         private Texture2D snowFlakeTexture;
 
-        private List<SnowFlake> snowFlakes = new List<SnowFlake>();
+        private List<Snowflake> snowflakes = new List<Snowflake>();
         private Random rnd = new Random();
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        public Game1()
+        public MainGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -85,14 +85,14 @@ namespace ScreenSaver
         /// </summary>
         private void CreateSnowFlakes()
         {
-            int screenWidth = graphics.PreferredBackBufferWidth;
+            var screenWidth = graphics.PreferredBackBufferWidth;
 
             for (int i = 0; i < MaxSnowFlakes; i++)
             {
-                int size = rnd.Next(MinFlakeSize, MaxFlakeSize + 1);
-                float speed = BiasForY * (MinFlakeSize / (float)size);
+                var size = rnd.Next(MinFlakeSize, MaxFlakeSize + 1);
+                var speed = BiasForY * (MinFlakeSize / (float)size);
 
-                snowFlakes.Add(new SnowFlake
+                snowflakes.Add(new Snowflake
                 {
                     X = rnd.Next(-SpawnOffsetX, screenWidth + SpawnOffsetX),
                     Y = rnd.Next(-SpawnOffsetY, 0),
@@ -118,10 +118,10 @@ namespace ScreenSaver
                 Exit();
             }
 
-            int screenWidth = graphics.PreferredBackBufferWidth;
-            int screenHeight = graphics.PreferredBackBufferHeight;
+            var screenWidth = graphics.PreferredBackBufferWidth;
+            var screenHeight = graphics.PreferredBackBufferHeight;
 
-            foreach (var flake in snowFlakes)
+            foreach (var flake in snowflakes)
             {
                 flake.X += BiasForX;
                 flake.Y += flake.Speed;
@@ -152,7 +152,7 @@ namespace ScreenSaver
             spriteBatch.Draw(backgroundTexture, Vector2.Zero, Color.White);
 
             // Снежинки
-            foreach (var flake in snowFlakes)
+            foreach (var flake in snowflakes)
             {
                 var destRect = new Rectangle(
                     x: (int)(flake.X - flake.Size / 2f),

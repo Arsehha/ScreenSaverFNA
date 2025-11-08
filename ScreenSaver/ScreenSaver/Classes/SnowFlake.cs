@@ -9,7 +9,7 @@ namespace ScreenSaver.Classes
     /// <summary>
     /// Класс описывающий параметры снежинок
     /// </summary>
-    public class SnowFlake
+    public class Snowflake
     {
         /// <summary>
         /// Местоположение снежинки по X
