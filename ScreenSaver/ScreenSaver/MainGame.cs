@@ -24,7 +24,7 @@ namespace ScreenSaver
         private const int MaxFlakeSize = 60;
 
         // Количество и границы
-        private const int MaxSnowFlakes = 150;
+        private const int MaxSnowflakes = 150;
 
         // Границы появления и сброса
         private const int SpawnOffsetX = 150;          // Допуск слева/справа при создании
@@ -37,7 +37,7 @@ namespace ScreenSaver
 
         // Ресурсы
         private Texture2D backgroundTexture;
-        private Texture2D snowFlakeTexture;
+        private Texture2D snowflakeTexture;
 
         private List<Snowflake> snowflakes = new List<Snowflake>();
         private Random rnd = new Random();
@@ -75,7 +75,7 @@ namespace ScreenSaver
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             backgroundTexture = Content.Load<Texture2D>("gory_sneg_zima_132544_1920x1080");
-            snowFlakeTexture = Content.Load<Texture2D>("snowflake");
+            snowflakeTexture = Content.Load<Texture2D>("snowflake");
 
             CreateSnowFlakes();
         }
@@ -87,7 +87,7 @@ namespace ScreenSaver
         {
             var screenWidth = graphics.PreferredBackBufferWidth;
 
-            for (int i = 0; i < MaxSnowFlakes; i++)
+            for (var i = 0; i < MaxSnowflakes; i++)
             {
                 var size = rnd.Next(MinFlakeSize, MaxFlakeSize + 1);
                 var speed = BiasForY * (MinFlakeSize / (float)size);
@@ -160,7 +160,7 @@ namespace ScreenSaver
                     width: flake.Size,
                     height: flake.Size
                 );
-                spriteBatch.Draw(snowFlakeTexture, destRect, Color.White);
+                spriteBatch.Draw(snowflakeTexture, destRect, Color.White);
             }
 
             spriteBatch.End();
